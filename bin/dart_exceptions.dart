@@ -40,6 +40,11 @@ void functionTwo() {
   print("Started F02");
   for (int i = 1; i <= 5; i++) {
     print(i);
+    try {
+      double amount = double.parse("Not number");
+    } on FormatException {
+      print("A conversão nao pode ser feita");
+    }
   }
   print("Finished 02");
 }
