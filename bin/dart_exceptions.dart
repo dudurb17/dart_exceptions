@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'controllers/bank_controller.dart';
 import 'models/account.dart';
 
@@ -32,7 +34,22 @@ void main() {
 
 void functionOne() {
   print("Started F01");
-  functionTwo();
+  try {
+    functionTwo();
+  } on FormatException catch (e) {
+    print("Foi capturada dentro da functionOne");
+    print(e.message);
+    print(e.source);
+    print(e.toString());
+  } on HttpException catch (e) {
+    print(e.uri);
+  } on IOException catch (e) {
+    print("Uma IOException foi encontrada");
+    e.toString();
+  } on Exception catch (e) {
+    print(e);
+  }
+
   print("Finished F01");
 }
 
@@ -40,11 +57,7 @@ void functionTwo() {
   print("Started F02");
   for (int i = 1; i <= 5; i++) {
     print(i);
-    try {
-      double amount = double.parse("Not number");
-    } on FormatException {
-      print("A conversão nao pode ser feita");
-    }
+    double amount = double.parse("Not number");
   }
   print("Finished 02");
 }
