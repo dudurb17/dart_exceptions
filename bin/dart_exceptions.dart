@@ -1,10 +1,34 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'controllers/bank_controller.dart';
 import 'exceptions/bank_controller_exception.dart';
 import 'models/account.dart';
 
+void TestingNullSafety() {
+  Account? myAccount;
+
+  //Simulando uma comunicação externa
+  Random rng = Random();
+  int randomNumber = rng.nextInt(10);
+  if (randomNumber <= 5) {
+    myAccount = Account(name: "Eduardo", balance: 200, isAuthenticated: true);
+  }
+  // print(myAccount.runtimeType);
+  // if (myAccount != null) {
+  //   print(myAccount.balance);
+  // } else {
+  //   print("A conta é nula");
+  // }
+
+  //Conversão direta: ma pratica
+  //print(myAccount!.balance);
+  print(myAccount != null ? myAccount.balance : "Conta nula");
+  print(myAccount?.balance);
+}
+
 void main() {
+  TestingNullSafety();
   // Criando o banco
   BankController bankController = BankController();
 
