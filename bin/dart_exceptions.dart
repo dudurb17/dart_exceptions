@@ -6,8 +6,11 @@ import 'exceptions/bank_controller_exception.dart';
 import 'models/account.dart';
 
 void TestingNullSafety() {
-  Account? myAccount =
-      Account(name: "Eduardo", balance: 200, isAuthenticated: true);
+  Account? myAccount = Account(
+      name: "Eduardo",
+      balance: 200,
+      isAuthenticated: true,
+      createAt: DateTime.now());
   ;
 
   //Simulando uma comunicação externa
